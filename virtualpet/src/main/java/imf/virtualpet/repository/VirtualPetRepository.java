@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public interface VirtualPetRespository extends ReactiveMongoRepository<VirtualPet, String> {
+public interface VirtualPetRepository extends ReactiveMongoRepository<VirtualPet, String> {
     Mono<VirtualPet> findById(String virtualPetId);
     Flux<VirtualPet> findAllByUserId(String userId);
 }
