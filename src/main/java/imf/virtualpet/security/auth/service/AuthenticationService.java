@@ -9,7 +9,7 @@ import imf.virtualpet.domain.user.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import imf.virtualpet.security.auth.dto.AuthenticationRequestDTO;
 import imf.virtualpet.security.auth.dto.AuthenticationResponseDTO;
-import imf.virtualpet.security.auth.RegisterRequest;
+import imf.virtualpet.security.auth.dto.RegisterRequestDTO;
 import imf.virtualpet.token.entity.Token;
 import imf.virtualpet.token.repository.TokenRepository;
 import imf.virtualpet.token.entity.TokenType;
@@ -33,11 +33,11 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final ReactiveAuthenticationManager authenticationManager;
 
-    public Mono<AuthenticationResponseDTO> register(RegisterRequest request) {
+    public Mono<AuthenticationResponseDTO> register(RegisterRequestDTO request) {
         Role userRole = request.getRole() != null ? request.getRole() : Role.USER;
 
         return repository.findByUsername(request.getUsername())
-                .flatMap(existingUser -> Mono.<AuthenticationResponseDTO>error(new RuntimeException("Username is already taken")))  // Explicitly cast to Mono<AuthenticationResponse>
+                .flatMap(existingUser -> Mono.<AuthenticationResponseDTO>error(new RuntimeException("Username is already taken")))
                 .switchIfEmpty(Mono.defer(() -> {
                     var user = User.builder()
                             .username(request.getUsername())
