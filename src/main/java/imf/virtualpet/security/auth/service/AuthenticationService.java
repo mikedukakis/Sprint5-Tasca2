@@ -7,8 +7,8 @@ import imf.virtualpet.domain.user.entity.User;
 import imf.virtualpet.domain.user.repository.UserRepository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import imf.virtualpet.security.auth.AuthenticationRequest;
-import imf.virtualpet.security.auth.AuthenticationResponse;
+import imf.virtualpet.security.auth.dto.AuthenticationRequestDTO;
+import imf.virtualpet.security.auth.dto.AuthenticationResponseDTO;
 import imf.virtualpet.security.auth.RegisterRequest;
 import imf.virtualpet.token.entity.Token;
 import imf.virtualpet.token.repository.TokenRepository;
@@ -33,11 +33,11 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final ReactiveAuthenticationManager authenticationManager;
 
-    public Mono<AuthenticationResponse> register(RegisterRequest request) {
+    public Mono<AuthenticationResponseDTO> register(RegisterRequest request) {
         Role userRole = request.getRole() != null ? request.getRole() : Role.USER;
 
         return repository.findByUsername(request.getUsername())
-                .flatMap(existingUser -> Mono.<AuthenticationResponse>error(new RuntimeException("Username is already taken")))  // Explicitly cast to Mono<AuthenticationResponse>
+                .flatMap(existingUser -> Mono.<AuthenticationResponseDTO>error(new RuntimeException("Username is already taken")))  // Explicitly cast to Mono<AuthenticationResponse>
                 .switchIfEmpty(Mono.defer(() -> {
                     var user = User.builder()
                             .username(request.getUsername())
@@ -51,7 +51,7 @@ public class AuthenticationService {
                                 var refreshToken = jwtService.generateRefreshToken(savedUser);
 
                                 return Mono.fromRunnable(() -> saveUserToken(savedUser, jwtToken))
-                                        .then(Mono.just(AuthenticationResponse.builder()
+                                        .then(Mono.just(AuthenticationResponseDTO.builder()
                                                 .accessToken(jwtToken)
                                                 .refreshToken(refreshToken)
                                                 .build()));
@@ -59,7 +59,7 @@ public class AuthenticationService {
                 }));
     }
 
-    public Mono<AuthenticationResponse> authenticate(AuthenticationRequest request) {
+    public Mono<AuthenticationResponseDTO> authenticate(AuthenticationRequestDTO request) {
         return Mono.fromRunnable(() ->
                         authenticationManager.authenticate(
                                 new UsernamePasswordAuthenticationToken(
@@ -75,7 +75,7 @@ public class AuthenticationService {
                             var refreshToken = jwtService.generateRefreshToken(user);
                             return revokeAllUserTokens(user)
                                     .then(saveUserToken(user, jwtToken))
-                                    .thenReturn(AuthenticationResponse.builder()
+                                    .thenReturn(AuthenticationResponseDTO.builder()
                                             .accessToken(jwtToken)
                                             .refreshToken(refreshToken)
                                             .build());
@@ -123,7 +123,7 @@ public class AuthenticationService {
                     return revokeAllUserTokens(user)
                             .then(saveUserToken(user, accessToken))
                             .then(Mono.defer(() -> {
-                                AuthenticationResponse authResponse = AuthenticationResponse.builder()
+                                AuthenticationResponseDTO authResponse = AuthenticationResponseDTO.builder()
                                         .accessToken(accessToken)
                                         .refreshToken(refreshToken)
                                         .build();
