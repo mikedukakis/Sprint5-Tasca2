@@ -28,7 +28,7 @@ public class ApplicationConfig {
     @Bean
     public ReactiveAuthenticationManager authenticationManager(ReactiveUserDetailsService userDetailsService) {
         UserDetailsRepositoryReactiveAuthenticationManager authManager = new UserDetailsRepositoryReactiveAuthenticationManager(userDetailsService);
-        authManager.setPasswordEncoder(passwordEncoder());  // Set password encoder for authentication
+        authManager.setPasswordEncoder(passwordEncoder());
         return authManager;
     }
 
