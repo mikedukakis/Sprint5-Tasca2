@@ -4,7 +4,7 @@ import imf.virtualpet.domain.user.entity.Role;
 import imf.virtualpet.domain.user.entity.User;
 import imf.virtualpet.domain.user.repository.UserRepository;
 import imf.virtualpet.security.auth.service.AuthenticationService;
-import imf.virtualpet.security.auth.RegisterRequest;
+import imf.virtualpet.security.auth.dto.RegisterRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -23,10 +23,9 @@ public class InitialDataLoader {
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {
-            // Create "Admin" user if not exists
             Mono<User> adminMono = userRepository.findByUsername("Admin")
                     .switchIfEmpty(Mono.defer(() -> {
-                        var admin = RegisterRequest.builder()
+                        var admin = RegisterRequestDTO.builder()
                                 .username("Admin")
                                 .password(passwordEncoder.encode("password"))
                                 .role(Role.ROLE_ADMIN)
@@ -36,10 +35,9 @@ public class InitialDataLoader {
                                 .then(userRepository.findByUsername("Admin"));
                     }));
 
-            // Create "Manager" user if not exists
             Mono<User> managerMono = userRepository.findByUsername("Manager")
                     .switchIfEmpty(Mono.defer(() -> {
-                        var manager = RegisterRequest.builder()
+                        var manager = RegisterRequestDTO.builder()
                                 .username("Manager")
                                 .password(passwordEncoder.encode("password"))
                                 .role(Role.ROLE_MANAGER)
