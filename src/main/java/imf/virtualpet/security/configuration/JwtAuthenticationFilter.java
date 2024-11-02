@@ -24,7 +24,7 @@ public class JwtAuthenticationFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
         if (path.contains("/virtualpet/auth")) {
-            return chain.filter(exchange); // Skip filtering for auth routes
+            return chain.filter(exchange);
         }
         String authHeader = exchange.getRequest().getHeaders().getFirst("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -53,7 +53,7 @@ public class JwtAuthenticationFilter implements WebFilter {
                                 return chain.filter(exchange)
                                         .contextWrite(ReactiveSecurityContextHolder.withAuthentication(authToken));
                             }
-                            return chain.filter(exchange); // Continue without authentication
+                            return chain.filter(exchange);
                         })
                 );
     }
