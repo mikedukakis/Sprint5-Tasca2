@@ -2,6 +2,7 @@ package imf.virtualpet.security.auth;
 
 import imf.virtualpet.security.auth.dto.AuthenticationRequestDTO;
 import imf.virtualpet.security.auth.dto.AuthenticationResponseDTO;
+import imf.virtualpet.security.auth.dto.RegisterRequestDTO;
 import imf.virtualpet.security.auth.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public Mono<ResponseEntity<AuthenticationResponseDTO>> register(@RequestBody RegisterRequest request) {
+    public Mono<ResponseEntity<AuthenticationResponseDTO>> register(@RequestBody RegisterRequestDTO request) {
         return authenticationService.register(request)
                 .map(ResponseEntity::ok);
     }
