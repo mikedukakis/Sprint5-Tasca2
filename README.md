@@ -7,12 +7,12 @@ A reactive RESTful API that allows users to create and manage virtual pets with 
 The API provides endpoints for creating and caring for pets, managing user profiles with Spring Boot security through authentication by login and authorisation with JWT. It uses MongoDB for game data persistence.
 
 <br/>
-### 📄 Project Statement
+###  📄 Project Statement
 
 The Virtual Pet API enables users to create and manage virtual pets. Features include CRUD operations for pets, user authentication, and interactive pet actions. The API also tracks player statistics and stores it all in a MongoDB database.
 
 <br/>
-### 💻 Technologies Used
+###  💻 Technologies Used
 
 -     Java
 -     Spring Boot
@@ -22,7 +22,7 @@ The Virtual Pet API enables users to create and manage virtual pets. Features in
 -     Maven for project build and dependency management
 
 <br/>
-### 📋 Requirements
+###  📋 Requirements
 
 -     Java 21 or higher
 -     Spring Boot 3.3.5 or higher
@@ -32,7 +32,8 @@ The Virtual Pet API enables users to create and manage virtual pets. Features in
 -     Internet connection for downloading dependencies
 
 <br/>
-### 🛠️ Installation
+
+###  🛠️ Installation
 
 ##### 1. Clone this repository:
 
@@ -54,7 +55,7 @@ Update your MongoDB connection details in `application.properties` located in th
 
 
 <br/>
-### ▶️ Execution
+###  ▶️ Execution
 
 ##### 1. Start MongoDB on your local machine or on a configured server.
 
@@ -65,14 +66,14 @@ Update your MongoDB connection details in `application.properties` located in th
 ##### 3. Access the API: The application will be available at `http://localhost:8080`.
 
 <br/>
-### 🌐 API Documentation
+###  🌐 API Documentation
 
 The API documentation is available via Swagger:
 
     Swagger UI
 
 <br/>
-### 🌐 Deployment
+###  🌐 Deployment
 
 - Prepare the production environment.
 
@@ -85,10 +86,16 @@ The API documentation is available via Swagger:
 - Verify the application setup by checking the Swagger documentation.
 
 <br/>
-### 📚 API Endpoints
+
+###  📚 API Endpoints
+
 <br/>
-#### Authentication Endpoints
-##### Register a New User
+
+####  Authentication Endpoints
+
+<br/>
+
+#####  Register a New User
 
     URL: /virtualpet/auth/register
     Method: POST
