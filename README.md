@@ -150,6 +150,7 @@ The API documentation is available via Swagger:
 
 <br/>
 #### Virtual Pet Endpoints
+<br/>
 ##### Retrieve All User’s Pets
 
     URL: /virtualpet/pet/mypets
@@ -184,7 +185,8 @@ The API documentation is available via Swagger:
     Response: 204 No Content if the pet was deleted successfully, or 404 Not Found if the pet was not found or the user is unauthorized.
 
 <br/>
-### 🤝 Contributions
+
+###  🤝 Contributions
 
 Contributions are welcome! Follow these steps to contribute:
 
