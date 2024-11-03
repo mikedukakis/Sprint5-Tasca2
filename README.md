@@ -7,12 +7,12 @@ A reactive RESTful API that allows users to create and manage virtual pets with 
 The API provides endpoints for creating and caring for pets, managing user profiles with Spring Boot security through authentication by login and authorisation with JWT. It uses MongoDB for game data persistence.
 
 <br/>
-###📄 Project Statement
+### 📄 Project Statement
 
 The Virtual Pet API enables users to create and manage virtual pets. Features include CRUD operations for pets, user authentication, and interactive pet actions. The API also tracks player statistics and stores it all in a MongoDB database.
 
 <br/>
-###💻 Technologies Used
+### 💻 Technologies Used
 
 -     Java
 -     Spring Boot
@@ -22,7 +22,7 @@ The Virtual Pet API enables users to create and manage virtual pets. Features in
 -     Maven for project build and dependency management
 
 <br/>
-###📋 Requirements
+### 📋 Requirements
 
 -     Java 21 or higher
 -     Spring Boot 3.3.5 or higher
@@ -32,21 +32,21 @@ The Virtual Pet API enables users to create and manage virtual pets. Features in
 -     Internet connection for downloading dependencies
 
 <br/>
-###🛠️ Installation
+### 🛠️ Installation
 
-#####1. Clone this repository:
+##### 1. Clone this repository:
 
 `git clone https://github.com/mikedukakis/Sprint5-Tasca2.git`
 
-#####2. Navigate to the project directory:
+##### 2. Navigate to the project directory:
 
 `cd Sprint5-Tasca2`
 
-#####3. Install dependencies using Maven:
+##### 3. Install dependencies using Maven:
 
 `mvn clean install`
 
-#####4. Configure the application:
+##### 4. Configure the application:
         
 Update your MongoDB connection details in `application.properties` located in the `src/main/resources directory`like so:
 `spring.data.mongodb.uri=mongodb://localhost:27017/virtualpet`
@@ -54,25 +54,25 @@ Update your MongoDB connection details in `application.properties` located in th
 
 
 <br/>
-###▶️ Execution
+### ▶️ Execution
 
-#####1. Start MongoDB on your local machine or on a configured server.
+##### 1. Start MongoDB on your local machine or on a configured server.
 
-#####2. Run the application:
+##### 2. Run the application:
 
 `mvn spring-boot:run`
 
-#####3. Access the API: The application will be available at `http://localhost:8080`.
+##### 3. Access the API: The application will be available at `http://localhost:8080`.
 
 <br/>
-###🌐 API Documentation
+### 🌐 API Documentation
 
 The API documentation is available via Swagger:
 
     Swagger UI
 
 <br/>
-###🌐 Deployment
+### 🌐 Deployment
 
 - Prepare the production environment.
 
@@ -85,9 +85,9 @@ The API documentation is available via Swagger:
 - Verify the application setup by checking the Swagger documentation.
 
 <br/>
-###📚 API Endpoints
+### 📚 API Endpoints
 <br/>
-####Authentication Endpoints
+#### Authentication Endpoints
 ##### Register a New User
 
     URL: /virtualpet/auth/register
@@ -110,7 +110,7 @@ The API documentation is available via Swagger:
         access_token: The JWT access token for the authenticated user.
         refresh_token: The JWT refresh token for the authenticated user.
         
-#####User Logout
+##### User Logout
 
     URL: /virtualpet/auth/logout
     Method: POST
@@ -125,8 +125,8 @@ The API documentation is available via Swagger:
     Response: 200 OK with a refreshed access token.
 
 <br/>
-####User Management Endpoints
-#####Change Password
+#### User Management Endpoints
+##### Change Password
 
     URL: /virtualpet/user
     Method: PATCH
@@ -136,28 +136,28 @@ The API documentation is available via Swagger:
         confirmationPassword (String): Confirmation of the new password.
     Response: 200 OK upon successful password update.
 
-#####Display Login Page
+##### Display Login Page
 
     URL: /virtualpet/user/login
     Method: GET
     Description: Serves the login HTML page.
 
-#####Display User's Pets Page
+##### Display User's Pets Page
 
     URL: /virtualpet/user/mypets
     Method: GET
     Description: Serves the user's pets page.
 
 <br/>
-####Virtual Pet Endpoints
-#####Retrieve All User’s Pets
+#### Virtual Pet Endpoints
+##### Retrieve All User’s Pets
 
     URL: /virtualpet/pet/mypets
     Method: GET
     Description: Retrieves all pets associated with the authenticated user.
     Response: 200 OK with a list of pets for the user.
 
-#####Create a New Pet
+##### Create a New Pet
 
     URL: /virtualpet/pet/new
     Method: POST
@@ -167,7 +167,7 @@ The API documentation is available via Swagger:
         colour (String): Color of the pet.
     Response: 201 Created with the details of the new pet created for the user.
 
-#####Find a Pet by Name
+##### Find a Pet by Name
 
     URL: /virtualpet/pet/find/{name}
     Method: GET
@@ -175,7 +175,7 @@ The API documentation is available via Swagger:
         name (String): Name of the pet to retrieve.
     Response: 200 OK with pet details if found, or 404 Not Found if no pet exists with the specified name.
 
-#####Delete a Pet
+##### Delete a Pet
 
     URL: /virtualpet/pet/delete/{petId}
     Method: DELETE
@@ -184,21 +184,21 @@ The API documentation is available via Swagger:
     Response: 204 No Content if the pet was deleted successfully, or 404 Not Found if the pet was not found or the user is unauthorized.
 
 <br/>
-###🤝 Contributions
+### 🤝 Contributions
 
 Contributions are welcome! Follow these steps to contribute:
 
-#####1. Fork the repository.
-#####2. Create a new branch for your feature:
+##### 1. Fork the repository.
+##### 2. Create a new branch for your feature:
 
 `git checkout -b feature/NewFeature`
 
-#####3. Make your changes and commit:
+##### 3. Make your changes and commit:
 
 `git commit -m 'Add New Feature'`
 
-#####4. Push your changes:
+##### 4. Push your changes:
 
 `git push origin feature/NewFeature`
 
-#####5. Create a pull request for review.
+##### 5. Create a pull request for review.
