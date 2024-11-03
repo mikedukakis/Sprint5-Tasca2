@@ -125,8 +125,12 @@ The API documentation is available via Swagger:
     Response: 200 OK with a refreshed access token.
 
 <br/>
-#### User Management Endpoints
-##### Change Password
+
+####  User Management Endpoints
+
+<br/>
+
+#####  Change Password
 
     URL: /virtualpet/user
     Method: PATCH
@@ -149,8 +153,11 @@ The API documentation is available via Swagger:
     Description: Serves the user's pets page.
 
 <br/>
+
 #### Virtual Pet Endpoints
+
 <br/>
+
 ##### Retrieve All User’s Pets
 
     URL: /virtualpet/pet/mypets
