@@ -7,11 +7,13 @@ A reactive RESTful API that allows users to create and manage virtual pets with 
 The API provides endpoints for creating and caring for pets, managing user profiles with Spring Boot security through authentication by login and authorisation with JWT. It uses MongoDB for game data persistence.
 
 <br/>
+
 ###  📄 Project Statement
 
 The Virtual Pet API enables users to create and manage virtual pets. Features include CRUD operations for pets, user authentication, and interactive pet actions. The API also tracks player statistics and stores it all in a MongoDB database.
 
 <br/>
+
 ###  💻 Technologies Used
 
 -     Java
@@ -22,7 +24,8 @@ The Virtual Pet API enables users to create and manage virtual pets. Features in
 -     Maven for project build and dependency management
 
 <br/>
-###  📋 Requirements
+
+### 📋 Requirements
 
 -     Java 21 or higher
 -     Spring Boot 3.3.5 or higher
@@ -55,6 +58,7 @@ Update your MongoDB connection details in `application.properties` located in th
 
 
 <br/>
+
 ###  ▶️ Execution
 
 ##### 1. Start MongoDB on your local machine or on a configured server.
@@ -66,6 +70,7 @@ Update your MongoDB connection details in `application.properties` located in th
 ##### 3. Access the API: The application will be available at `http://localhost:8080`.
 
 <br/>
+
 ###  🌐 API Documentation
 
 The API documentation is available via Swagger:
@@ -73,6 +78,7 @@ The API documentation is available via Swagger:
     Swagger UI
 
 <br/>
+
 ###  🌐 Deployment
 
 - Prepare the production environment.
