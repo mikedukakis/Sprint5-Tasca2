@@ -13,9 +13,9 @@ public class WebFluxConfig {
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedMethod("*"); // Permite todos los métodos: GET, POST, etc.
-        config.addAllowedHeader("*"); // Permite todas las cabeceras
-        config.setAllowCredentials(true); // Permite el envío de credenciales
+        config.addAllowedMethod("*");
+        config.addAllowedHeader("*");
+        config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
