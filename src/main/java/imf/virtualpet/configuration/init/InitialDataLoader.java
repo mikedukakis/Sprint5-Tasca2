@@ -1,10 +1,10 @@
 package imf.virtualpet.configuration.init;
 
-import imf.virtualpet.domain.user.entity.Role;
-import imf.virtualpet.domain.user.entity.User;
-import imf.virtualpet.domain.user.repository.UserRepository;
-import imf.virtualpet.security.auth.service.AuthenticationService;
-import imf.virtualpet.security.auth.dto.RegisterRequestDTO;
+import imf.virtualpet.domain.user.Role;
+import imf.virtualpet.domain.user.User;
+import imf.virtualpet.repository.UserRepository;
+import imf.virtualpet.service.AuthenticationService;
+import imf.virtualpet.dto.RegisterRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

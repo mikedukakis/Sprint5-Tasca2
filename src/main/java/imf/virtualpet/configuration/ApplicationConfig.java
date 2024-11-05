@@ -1,6 +1,6 @@
 package imf.virtualpet.configuration;
 
-import imf.virtualpet.domain.user.repository.UserRepository;
+import imf.virtualpet.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

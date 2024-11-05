@@ -1,7 +1,7 @@
 package imf.virtualpet.security.configuration;
 
-
-import imf.virtualpet.domain.user.entity.Role;
+import imf.virtualpet.domain.user.Role;
+import static imf.virtualpet.domain.user.Permission.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,6 @@ import org.springframework.security.web.server.authentication.logout.SecurityCon
 import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers;
 import reactor.core.publisher.Mono;
 
-import static imf.virtualpet.domain.user.entity.Permission.*;
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration

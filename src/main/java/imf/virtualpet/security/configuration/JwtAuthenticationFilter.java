@@ -1,7 +1,7 @@
 package imf.virtualpet.security.configuration;
 
 import imf.virtualpet.configuration.JwtService;
-import imf.virtualpet.token.repository.TokenRepository;
+import imf.virtualpet.repository.TokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
