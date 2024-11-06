@@ -10,8 +10,8 @@ public class VirtualPetMapper {
                 virtualPetCreationRequestDTO.getPetType(),
                 virtualPetCreationRequestDTO.getColour()
         );
-        virtualPet.setHungry(virtualPetCreationRequestDTO.isHungry());
-        virtualPet.setHappy(virtualPetCreationRequestDTO.isHappy());
+        virtualPet.setIsHungry(virtualPetCreationRequestDTO.isHungry());
+        virtualPet.setIsHappy(virtualPetCreationRequestDTO.isHappy());
         return virtualPet;
     }
 
@@ -22,8 +22,8 @@ public class VirtualPetMapper {
                 virtualPetResponseDTO.getPetType(),
                 virtualPetResponseDTO.getColour()
         );
-        virtualPet.setHungry(virtualPetResponseDTO.getIsHungry());
-        virtualPet.setHappy(virtualPetResponseDTO.getIsHappy());
+        virtualPet.setIsHungry(virtualPetResponseDTO.getIsHungry());
+        virtualPet.setIsHappy(virtualPetResponseDTO.getIsHappy());
         return virtualPet;
     }
 
