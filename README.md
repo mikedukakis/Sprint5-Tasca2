@@ -184,7 +184,7 @@ The API documentation is available via Swagger:
     Method: POST
     Request Body:
         name (String): Name of the new pet.
-        petType (String): Type of the pet (e.g., Dog, Cat).
+        petType (String): Type of the pet (DOG or CAT - in capital letters).
         colour (String): Color of the pet.
     Response: 201 Created with the details of the new pet created for the user.
 
@@ -203,6 +203,22 @@ The API documentation is available via Swagger:
     Path Variable:
         petId (String): ID of the pet to delete.
     Response: 204 No Content if the pet was deleted successfully, or 404 Not Found if the pet was not found or the user is unauthorized.
+
+##### Feed a Pet
+
+    URL: /virtualpet/pet/feed/{petId}
+    Method: POST
+    Path Variable:
+        petId (String): ID of the pet to feed.
+    Response: 200 OK if the hunger state of the pet has been saved.
+
+##### Pet a Pet
+
+    URL: /virtualpet/pet/pet/{petId}
+    Method: POST
+    Path Variable:
+        petId (String): ID of the pet to pet.
+    Response: 200 OK if the mood (happy) state of the pet has been saved.
 
 <br/>
 
