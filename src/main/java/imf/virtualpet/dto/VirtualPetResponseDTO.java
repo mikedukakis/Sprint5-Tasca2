@@ -14,7 +14,7 @@ public class VirtualPetResponseDTO {
     private Boolean isHungry;
     private Boolean isHappy;
 
-    public VirtualPetResponseDTO(String id, String ownerUsername, String name, PetType petType, String colour, Boolean isHungry, Boolean isHappy) {
+    public VirtualPetResponseDTO(String id, String name, String ownerUsername, PetType petType, String colour, Boolean isHungry, Boolean isHappy) {
         this.id = id;
         this.name = name;
         this.ownerUsername = ownerUsername;

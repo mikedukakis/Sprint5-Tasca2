@@ -13,7 +13,11 @@ public class WebFluxConfig {
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedMethod("*");
+        config.addAllowedOriginPattern("http://localhost:8080");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("DELETE");
+        config.addAllowedMethod("PATCH");
         config.addAllowedHeader("*");
         config.setAllowCredentials(true);
 
