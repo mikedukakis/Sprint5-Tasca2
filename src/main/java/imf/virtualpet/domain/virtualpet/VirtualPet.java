@@ -40,10 +40,17 @@ public class VirtualPet {
         this.isHappy = getRandomBool();
     }
 
+    public void setIsHungry(Boolean isHungry) {
+        this.isHungry = isHungry;
+    }
+
+    public void setIsHappy(Boolean isHappy) {
+        this.isHappy = isHappy;
+    }
+
     public static boolean getRandomBool() {
         Random randomNumber = new Random();
-        int myRandNumber = randomNumber.nextInt(2);
-        return myRandNumber == 1;
+        return randomNumber.nextBoolean();
     }
 
 }
