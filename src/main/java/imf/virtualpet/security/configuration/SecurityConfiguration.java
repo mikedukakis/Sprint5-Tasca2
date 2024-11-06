@@ -5,6 +5,7 @@ import static imf.virtualpet.domain.user.Permission.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
@@ -58,13 +59,14 @@ public class SecurityConfiguration {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         AuthenticationWebFilter authenticationWebFilter = new AuthenticationWebFilter(authenticationManager);
-        authenticationWebFilter.setRequiresAuthenticationMatcher(ServerWebExchangeMatchers.pathMatchers("/api/v1/management/**"));
+        authenticationWebFilter.setRequiresAuthenticationMatcher(ServerWebExchangeMatchers.pathMatchers("/virtualpet/management/**"));
 
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchanges ->
                         exchanges
                                 .pathMatchers(WHITE_LIST_URL).permitAll()
+                                .pathMatchers(HttpMethod.OPTIONS).permitAll()
                                 .pathMatchers("/virtualpet/management/**").hasAuthority(Role.ROLE_ADMIN.name())
                                 .pathMatchers(GET, "/virtualpet/management/**").hasAuthority(ADMIN_READ.name())
                                 .pathMatchers(POST, "/virtualpet/management/**").hasAuthority(ADMIN_CREATE.name())
