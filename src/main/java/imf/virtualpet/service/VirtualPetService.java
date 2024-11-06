@@ -2,10 +2,13 @@ package imf.virtualpet.service;
 
 import imf.virtualpet.dto.VirtualPetCreationRequestDTO;
 import imf.virtualpet.domain.virtualpet.VirtualPet;
+import imf.virtualpet.dto.VirtualPetResponseDTO;
 import imf.virtualpet.repository.VirtualPetRepository;
 import imf.virtualpet.dto.VirtualPetMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -44,6 +47,26 @@ public class VirtualPetService {
 
     public Mono<Void> deletePet(String petId) {
         return virtualPetRepository.deleteById(petId);
+    }
+
+    public Mono<VirtualPetResponseDTO> feedPet(String petId) {
+        return virtualPetRepository.findById(petId)
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Pet not found with id " + petId)))
+                .flatMap(pet -> {
+                    pet.setIsHungry(false);
+                    return virtualPetRepository.save(pet);
+                })
+                .map(VirtualPetResponseDTO::fromEntity);
+    }
+
+    public Mono<VirtualPetResponseDTO> petPet(String petId) {
+        return virtualPetRepository.findById(petId)
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Pet not found with id " + petId)))
+                .flatMap(pet -> {
+                    pet.setIsHappy(true);
+                    return virtualPetRepository.save(pet);
+                })
+                .map(VirtualPetResponseDTO::fromEntity);
     }
 
 }

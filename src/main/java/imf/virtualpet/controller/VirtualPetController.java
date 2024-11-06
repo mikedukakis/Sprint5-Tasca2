@@ -19,6 +19,7 @@ import java.security.Principal;
 
 @Data
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("virtualpet/pet")
 public class VirtualPetController {
     private final VirtualPetService virtualPetService;
@@ -124,4 +125,30 @@ public class VirtualPetController {
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()))
                 .onErrorResume(error -> Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()));
     }
+
+    @Operation(summary = "Feed a pet", description = "Feeds a pet using their ID, if the authenticated user is the owner.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success. Hunger state changed."),
+            @ApiResponse(responseCode = "400", description = "Bad request. Invalid pet data provided."),
+            @ApiResponse(responseCode = "401", description = "Unauthorized. User not authorized to save new states to pets."),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Unexpected error.")
+    })
+    @PostMapping("/feed/{petId}")
+    public Mono<VirtualPetResponseDTO> feedPet(@PathVariable String petId) {
+        return virtualPetService.feedPet(petId);
+    }
+
+    @Operation(summary = "Pet a pet", description = "Pets a pet using their ID, if the authenticated user is the owner.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success. Mood (Happy) state changed."),
+            @ApiResponse(responseCode = "400", description = "Bad request. Invalid pet data provided."),
+            @ApiResponse(responseCode = "401", description = "Unauthorized. User not authorized to save new states to pets."),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Unexpected error.")
+    })
+    @PostMapping("/pet/{petId}")
+    public Mono<VirtualPetResponseDTO> petPet(@PathVariable String petId) {
+        return virtualPetService.petPet(petId);
+    }
+
+
 }
