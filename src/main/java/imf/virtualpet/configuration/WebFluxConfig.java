@@ -1,4 +1,4 @@
-package imf.virtualpet.security.configuration;
+package imf.virtualpet.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
