@@ -157,7 +157,7 @@ The API documentation is available via Swagger:
 
 ##### Get user profile (role)
 
-    URL: /virtualpet/user/profile
+    URL: /virtualpet/user/profile/{username}
     Method: GET
     Description: Serves the user's username and role.
 
