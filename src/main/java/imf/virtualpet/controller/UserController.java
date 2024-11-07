@@ -3,13 +3,13 @@ package imf.virtualpet.controller;
 import imf.virtualpet.dto.UserProfileResponseDTO;
 import imf.virtualpet.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
-@Controller
+
 @RequestMapping("/virtualpet/user")
 @RequiredArgsConstructor
+@RestController
 public class UserController {
 
     private final UserService userService;
@@ -24,8 +24,8 @@ public class UserController {
         return Mono.just("mypets");
     }
 
-    @GetMapping("/profile")
-    public Mono<UserProfileResponseDTO> getUserProfile(@RequestParam String username) {
+    @GetMapping("/profile/{username}")
+    public Mono<UserProfileResponseDTO> getUserProfile(@PathVariable String username) {
         return userService.getUserByUsername(username)
                 .map(user -> {
                     UserProfileResponseDTO response = new UserProfileResponseDTO();
