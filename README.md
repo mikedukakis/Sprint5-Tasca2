@@ -143,16 +143,6 @@ The API documentation is available via Swagger:
 
 <br/>
 
-#####  Change Password
-
-    URL: /virtualpet/user
-    Method: PATCH
-    Request Body:
-        currentPassword (String): Current password of the user.
-        newPassword (String): New password for the user.
-        confirmationPassword (String): Confirmation of the new password.
-    Response: 200 OK upon successful password update.
-
 ##### Display Login Page
 
     URL: /virtualpet/user/login
@@ -165,11 +155,24 @@ The API documentation is available via Swagger:
     Method: GET
     Description: Serves the user's pets page.
 
+##### Get user profile (role)
+
+    URL: /virtualpet/user/profile
+    Method: GET
+    Description: Serves the user's username and role.
+
 <br/>
 
 #### Virtual Pet Endpoints
 
 <br/>
+
+##### Retrieve All Pets (Only Admin role)
+
+    URL: /virtualpet/pet/allpets
+    Method: GET
+    Description: Retrieves all pets by any user if the requester has role Admin.
+    Response: 200 OK with a list of all pets.
 
 ##### Retrieve All User’s Pets
 
