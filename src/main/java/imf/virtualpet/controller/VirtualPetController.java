@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
@@ -35,6 +36,18 @@ public class VirtualPetController {
         return exchange.getPrincipal()
                 .map(Principal::getName)
                 .flatMapMany(virtualPetService::findPetsByUsername);
+    }
+
+    @Operation(summary = "Admin get all pets", description = "Retrieve all pets created by any user.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success. Pet list retrieved successfully."),
+            @ApiResponse(responseCode = "401", description = "Unauthorized. User not authorized to access pets."),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error. Unexpected error.")
+    })
+    @GetMapping("/allpets")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Flux<VirtualPet> getAllPets() {
+        return virtualPetService.findAllPets();
     }
 
     @Operation(summary = "Create a new pet for user", description = "Allows authenticated users to create a new pet.")
