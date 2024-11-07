@@ -2,35 +2,16 @@ package imf.virtualpet.service;
 
 import imf.virtualpet.domain.user.User;
 import imf.virtualpet.repository.UserRepository;
-import imf.virtualpet.dto.ChangePasswordDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.security.Principal;
+import reactor.core.publisher.Mono;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
-    private final PasswordEncoder passwordEncoder;
     private final UserRepository repository;
 
-    public void changePassword(ChangePasswordDTO request, Principal connectedUser) {
-
-        var user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
-
-        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
-            throw new IllegalStateException("Wrong password");
-        }
-
-        if (!request.getNewPassword().equals(request.getConfirmationPassword())) {
-            throw new IllegalStateException("Password are not the same");
-        }
-
-        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
-
-        repository.save(user);
+    public Mono<User> getUserByUsername(String username) {
+        return repository.findByUsername(username);
     }
 }
